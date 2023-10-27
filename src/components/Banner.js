@@ -17,4 +17,4 @@ const Banner = ({movie}) => { // Home의 movie props 가져옴
   )
 }
 
-export default Banner
+export default Banner;
