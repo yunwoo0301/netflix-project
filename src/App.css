@@ -8,11 +8,6 @@ body {
   margin-right: 1rem;
 }
 
-.card {
-  width: 300px;
-  height: 200px;
-}
-
 .banner {
   height: 600px;
   display: flex;
@@ -35,3 +30,19 @@ body {
   z-index: 1; /* 0은 기본값, 글자를 배너 위로 올림 */
 }
 
+.card_img {
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+.overlay {
+  opacity: 0; /* 투명도 조절 */
+}
+
+.card_img:hover .overlay {
+  opacity: 1; /* 마우스 호버 시 노출 */
+  background: rgba(43, 41, 41, 0.9);
+  width: 100%;
+  height: 100%;
+}
