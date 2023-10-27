@@ -1,5 +1,30 @@
+body {
+  background-color: black !important;
+  color: white !important;
+}
 .nav-item {
   color: white;
   text-decoration: none;
   margin-right: 1rem;
+}
+
+.banner {
+  height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.banner::before { /* 배경 그라데이션 효과 */
+  position: absolute;
+  left:0;
+  width: 100%;
+  height: 100%;
+  content: '';
+  background: linear-gradient(to top, black, transparent);
+}
+
+.banner-info { /* 타이틀과 오버뷰 내용 */
+  width: 40%;
+  margin: 30px;
+  z-index: 1; /* 0은 기본값, 글자를 배너 위로 올림 */
 }
