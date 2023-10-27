@@ -2,7 +2,9 @@ import axios from "axios";
 
 const api = axios.create({
     baseURL:"https://api.themoviedb.org/3", 
-    headers:{"Content-Type":"application/json"} // 데이터 타입 명시
+    headers:{
+      "Content-type":"application/json", // 데이터 타입 명시
+      "Authorization":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYzhkMjVkYWE4MGI3ZDE3ODE2YjEwZmQ3NmQ0NzgwYyIsInN1YiI6IjY1M2E4Nzg4ZDIxNDdjMDEzOTQ4YTE3MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OgmlWFc-E4dd-OY6kH_o5nyIEQMULTLfex5r70xZ-KM"}
 })
 
 api.interceptors.request.use(function (config) {     // 요청이 전달되기 전에 작업 수행
@@ -24,6 +26,7 @@ api.interceptors.response.use(
 
     console.log("response error", error);
     return Promise.reject(error);
-  });
+  }
+  );
 
   export default api;
