@@ -18,18 +18,26 @@ function getMovies() { // movie 정보를 가져올 함수 생성
             `/movie/upcoming?language=en-US&page=1`
         );
 
+        const genreApi = api.get(`/genre/movie/list?language=en`
+        
+        );
 
-        let [popularMovies, topRatedMovies, upComingMovies] = await Promise.all([
+
+        let [popularMovies, topRatedMovies, upComingMovies, genreList] = await Promise.all([
             popularMovieApi, 
             topRatedApi, 
             upComingApi,
+            genreApi,
         ]);
+
+        console.log("genreList?", genreList);
             dispatch({
                 type: "GET_MOVIES_SUCCESS",
                 payload: { 
                     popularMovies:popularMovies.data, 
                     topRatedMovies:topRatedMovies.data, 
                     upComingMovies:upComingMovies.data,
+                    genreList:genreList.data.genres,
                     loading: false,
                 },
             });

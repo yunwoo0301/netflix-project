@@ -1,7 +1,10 @@
 import React from 'react'
 import { Badge } from 'react-bootstrap';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 const MovieCard = ({item}) => { // item props로 받음
+
+    const { genreList } = useSelector((state=> state.movie));
   return (
     <div className='card_img' 
     style={{backgroundImage: "url("+
@@ -10,10 +13,12 @@ const MovieCard = ({item}) => { // item props로 받음
     }}
     >
         <div className='overlay'> 
-            <h1>{item.title}</h1>
+            <h1 className='movie_title'>{item.title}</h1>
             <div>
                 {item.genre_ids.map((id)=>(
-                <Badge bg="danger">{id}</Badge>
+                <Badge bg="danger" className='movie_genre'>
+                    {genreList.find((item) => item.id === id).name} {/* 배열에서 찾아주는 find 함수 */}
+                </Badge> 
                 ))}
             </div>
 

@@ -2,7 +2,8 @@ import React from 'react'
 
 const Banner = ({movie}) => { // Home의 movie props 가져옴
     console.log("movie?", movie);
-  return (
+  
+    return (
     <div className='banner'
     style={{backgroundImage: "url("+
         `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${movie.poster_path}`+
