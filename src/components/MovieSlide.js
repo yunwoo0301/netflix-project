@@ -25,13 +25,14 @@ const responsive = {
 
 const MovieSlide = ({movies}) => { // Home의 movies props 전달 받음
   console.log("movies", movies);
+  
   return (
-    <div>
+    <div className='slide_container'>
         <Carousel responsive={responsive}>
           {movies.results.map((item) => (
           <MovieCard item={item}/> 
           ))}
-        </Carousel>;
+        </Carousel>
     </div>
   )
 }
