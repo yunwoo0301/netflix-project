@@ -23,7 +23,7 @@ const Home = () => {
     }
   
     return (
-      <div>
+      <div className='home_container'>
         <ClipLoader
           color="#ffff"
           loading={loading}
@@ -31,12 +31,20 @@ const Home = () => {
         />
         {popularMovies.results && <Banner movie={popularMovies.results[0]} />}
       
-        <h1>Popular Movie</h1>
-        <MovieSlide movies={popularMovies}/>
-        <h1>Top rated Movie</h1>
-        <MovieSlide movies={topRatedMovies}/>
-        <h1>Upcoming Movie</h1>
-        <MovieSlide movies={upComingMovies}/>
+        <div className='movies'>
+          <div className='movie_contents'>
+            <h1 className='category'>Popular Movie</h1>
+            <MovieSlide movies={popularMovies}/>
+          </div>
+          <div className='movie_contents'>
+            <h1 className='category'>Top rated Movie</h1>
+            <MovieSlide movies={topRatedMovies}/>
+          </div>
+          <div className='movie_contents'>
+            <h1 className='category'>Upcoming Movie</h1>
+            <MovieSlide movies={upComingMovies}/>
+          </div>
+        </div>  
       </div>
     )
 }

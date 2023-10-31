@@ -1,14 +1,15 @@
 import React from 'react'
 import {Navbar, Container, Form, Button, Nav} from "react-bootstrap";
 import { Link } from 'react-router-dom';
+import logo from "../resources/Netflix_logo.png";
+
 const Navigation = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
             <Navbar.Brand href="#">
-                <img 
-                width={100} 
-                src="https://images.ctfassets.net/y2ske730sjqp/1aONibCke6niZhgPxuiilC/2c401b05a07288746ddf3bd3943fbc76/BrandAssets_Logos_01-Wordmark.jpg?w=940" />
+                <img style={{width:120}} src={logo} alt="logo"/>
+               
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
