@@ -9,27 +9,27 @@ import { faSquareXmark } from '@fortawesome/free-solid-svg-icons';
 
 const API_KEY = process.env.React_APP_API_KEY;
 
-const MovieTrailer = ({item}) => {
+const TvTrailer = ({item}) => {
     const [modalOpen, setModalOpen] = useState(true);  // 영화카드 클릭 시 모달창 떠야 하므로 True
     const {id} = useParams();
-    console.log("영화 예고편 ID", id);
+    console.log("티비 시리즈 예고편 ID", id);
     const [video, setVideo] = useState([]);
     const navigate = useNavigate();
 
 
     
-    const getTrailer = async() => {
-        let url = `/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
+    const getTvTrailer = async() => {
+        let url = `/tv/${id}/videos?api_key=${API_KEY}&language=en-US`
         let response = await api.get(url)
         let data = response.data;
         setVideo(data)
-        console.log("예고편 데이터는?",data)
+        console.log("티비 예고편 데이터는?",data)
     }
 
 
     
       useEffect(()=>{
-        getTrailer();
+        getTvTrailer();
     },[]);
 
     const closeModal = () => {
@@ -72,4 +72,4 @@ const MovieTrailer = ({item}) => {
     )
 }
 
-export default MovieTrailer;
+export default TvTrailer;

@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Movies from './pages/Movies';
 import Navigation from './components/Navigation';
 import MovieTrailer from './components/MovieTrailer';
+import TvTrailer from './components/TvTrailer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/movies" element={<Movies/>} />
         <Route path="/movies/:id" element={<MovieTrailer/>} />
+        <Route path="/tvseries/:id" element={<TvTrailer/>} />
       </Routes>
     </div>
   );
