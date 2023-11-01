@@ -55,15 +55,26 @@ function getDetail({id}) { // 영화 상세 정보 Api 함수
     return async(dispatch) => {
         try{
             dispatch({type:"GET_MOVIES_DETAIL_REQUEST", payload:{id}})
-            const detailApi=api.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`)
+
+            const detailApi = api.get(
+                `/movie/${id}?api_key=${API_KEY}&language=en-US`
+            );
+
+            const trailerApi = api.get(
+                `/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
+            );
             
-            let [movieDetail] = await Promise.all([detailApi])
+            let [movieDetail, movieTrailer] = await Promise.all([
+                detailApi,
+                trailerApi,
+            ]);
 
             dispatch({
                 type:"GET_MOVIES_DETAIL_SUCCESS",
                
                 payload:{
-                    movieDetail:movieDetail.data
+                    movieDetail:movieDetail.data,
+                    movieTrailer:movieTrailer.data,
                 }
             });
 
