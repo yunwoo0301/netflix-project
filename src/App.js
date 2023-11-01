@@ -2,9 +2,9 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import MovieDetail from './pages/MovieDetail';
 import Movies from './pages/Movies';
 import Navigation from './components/Navigation';
+import MovieTrailer from './components/MovieTrailer';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/movies" element={<Movies/>} />
-        <Route path="/movies/:id" element={<MovieDetail/>} />
+        <Route path="/movies/:id" element={<MovieTrailer/>} />
       </Routes>
     </div>
   );
