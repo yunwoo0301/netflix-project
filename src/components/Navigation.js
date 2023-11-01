@@ -19,9 +19,9 @@ const Navigation = () => {
                 navbarScroll
                 >
                 <Link to ="/" className='nav-item'>Home</Link>
-                <Link to="/movies" className='nav-item'>Movies</Link>
+                {/* <Link to="/movies" className='nav-item'>Movies</Link> */}
                 </Nav>
-                <Form className="d-flex">
+                {/* <Form className="d-flex">
                 <Form.Control
                     type="search"
                     placeholder="Search"
@@ -29,7 +29,7 @@ const Navigation = () => {
                     aria-label="Search"
                 />
                 <Button variant="outline-danger">Search</Button>
-                </Form>
+                </Form> */}
             </Navbar.Collapse>
         </Container>
   </Navbar>
