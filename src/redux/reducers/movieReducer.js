@@ -4,7 +4,8 @@ let initialState = {
     upComingMovies: {},
     loading: true,
     genreList: [], // 장르 리스트 추가
-    movieDetail: {}
+    movieDetail: {}, // 영화 상세정보 추가
+    movieTrailer:{}, // 영화 예고편 추가
 };
 
 
@@ -22,6 +23,7 @@ function movieReducer(state = initialState, action) {
                 upComingMovies: payload.upComingMovies,
                 genreList: payload.genreList,
                 movieDetail: payload.movieDetail, // 영화 상세정보 추가
+                movieTrailer: payload.movieTrailer, // 영화 예고편 추가
                 loading: false,
             };
 
