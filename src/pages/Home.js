@@ -17,11 +17,16 @@ const Home = () => {
     console.log("home", popularMovies, airtodayTv); // 인기순 영화 정보 출력
     
 
-    useEffect(() => { // 렌더링 이뤄진 후 호출
-        dispatch(movieAction.getMovies());
-    }, []);
+    // useEffect(() => { // 렌더링 이뤄진 후 호출
+    //     dispatch(movieAction.getMovies());
+    // }, []);
 
-    useEffect(() => {
+    // useEffect(() => {
+    //   dispatch(tvshowAction.getTvshow());
+    // }, []);
+
+    useEffect(() => { // 렌더링 이뤄진 후 호출(코드 재작성)
+      dispatch(movieAction.getMovies());
       dispatch(tvshowAction.getTvshow());
     }, []);
 
@@ -37,8 +42,8 @@ const Home = () => {
           loading={loading}
           size={150}
         />
-        {popularMovies.results && <Banner movie={popularMovies.results[0]} />}
-      
+        {/* {popularMovies.results && <Banner movie={popularMovies.results[0]} />} */}
+        <Banner/>
         <div className='movies'>
           <div className='movie_contents'>
             <h1 className='category'>Popular Movie</h1>

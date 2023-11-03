@@ -12,7 +12,9 @@ const TVCard = ({item}) => { // item props로 받음
     const navigate = useNavigate();
     const { genreTvList } = useSelector((state => state.tv));
 
-    
+    if (!item || !genreTvList) {
+        return null;
+    }
 
   return (
     <div className='card_container'>
