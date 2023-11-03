@@ -28,11 +28,15 @@ const responsive = {
     
     return (
       <div className='slide_container'>
-          <Carousel responsive={responsive}>
-            {tvseries.results.map((item) => (
-            <TVCard item={item}/> 
-            ))}
-          </Carousel>
+        <Carousel responsive={responsive}>
+          {tvseries && tvseries.results ? (
+            tvseries.results.map((item) => (
+              <TVCard item={item}/> 
+            ))
+          ) : (
+            <p>Loading...</p>
+          )}
+        </Carousel>
       </div>
     )
   }
