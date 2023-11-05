@@ -13,9 +13,9 @@
 - Web URL : https://yunoo-netflix.netlify.app/
 
 ## DEMO Capture
-![Demo](https://file.notion.so/f/f/239050b2-b936-40ee-853c-b79f996a6356/31937e4f-25f0-42d0-a53e-bc6201a1fd77/%EB%84%B7%ED%94%8C%EB%A6%AD%EC%8A%A4%ED%81%B4%EB%A1%A0%EC%BD%94%EB%94%A9.png?id=97c1d1fd-50d7-44c7-af31-401fdde48f0d&table=block&spaceId=239050b2-b936-40ee-853c-b79f996a6356&expirationTimestamp=1699084800000&signature=ARflRY2enqc4MFLpHmHDMiNGI6oVamURMrRN9prfa_s&downloadName=%EB%84%B7%ED%94%8C%EB%A6%AD%EC%8A%A4%ED%81%B4%EB%A1%A0%EC%BD%94%EB%94%A9.png)
-![Demo](https://file.notion.so/f/f/239050b2-b936-40ee-853c-b79f996a6356/6ea353ff-d22a-40dd-b157-78f585bf5f2a/slide.gif?id=a843b83e-2362-4e46-a90a-3d57c2e7d4c9&table=block&spaceId=239050b2-b936-40ee-853c-b79f996a6356&expirationTimestamp=1699084800000&signature=VVIushkLQyfCIZBCmVptUDeGweV62XCAi7t0unz2CFA&downloadName=slide.gif)
-![Demo](https://file.notion.so/f/f/239050b2-b936-40ee-853c-b79f996a6356/c17ab223-d076-498f-9479-a5c21f6c2ec2/trailer2.gif?id=08e0c72c-2892-4db1-8ec8-6256a116c432&table=block&spaceId=239050b2-b936-40ee-853c-b79f996a6356&expirationTimestamp=1699084800000&signature=I5O0qzyrh6ORdzUndV2PnOTRG8dmwacM9TvXrjrq4tw&downloadName=trailer2.gif)
+![netflix-project](https://github.com/yunwoo0301/netflix-project/assets/121915009/48294869-ec3e-4a46-be20-b60c38d2b9bc)
+![netflix-project2](https://github.com/yunwoo0301/netflix-project/assets/121915009/c210c1f6-5d05-41a5-8527-65eeaf4781fb)
+![netflix-project3](https://github.com/yunwoo0301/netflix-project/assets/121915009/fb7b7e3b-a3ae-4a74-bbe0-06aad99804b2)
 
 <br />
 <br />
@@ -49,8 +49,16 @@
 
 ### 👒 1. 처음 영화 정보 데이터 API를 무비 리덕스에 저장 후 axios api를 불러올 시 401 에러
 - 해결방법 >> axios 인스턴스 생성 중 Authorization 항목을 추가하지 않아 인가를 받지 못해 엑세스 권한 허용이 되지 않았던 것 / 추가 후 정상 api 호출됨.
-<img src="https://file.notion.so/f/f/239050b2-b936-40ee-853c-b79f996a6356/a29da217-48d8-486d-a7fa-ee3581970f62/Untitled.png?id=ee59dbf4-749a-4d4c-bd9b-907112e9d629&table=block&spaceId=239050b2-b936-40ee-853c-b79f996a6356&expirationTimestamp=1699084800000&signature=DOaCpLglFnNOV9G0CChPVHnrfoLX6BHlUuspn_ypMRA&downloadName=Untitled.png">
 
+```
+ const api = axios.create({
+    baseURL:"https://api.themoviedb.org/3", 
+    headers:{
+      "Content-type":"application/json", // 데이터 타입 명시
+      "Authorization":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYzhkMjVkYWE4MGI3ZDE3ODE2YjEwZmQ3NmQ0NzgwYyIsInN1YiI6IjY1M2E4Nzg4ZDIxNDdjMDEzOTQ4YTE3MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OgmlWFc-E4dd-OY6kH_o5nyIEQMULTLfex5r70xZ-KM"}
+})
+
+```
 </br>
 
 ### 👚 2. 멀티 캐러셀 모듈 통해 슬라이드 확대 기능은 구현했으나 높이 조절 제한 문제점 발생
@@ -62,14 +70,48 @@
 
 ### 👝 3. 장르 데이터의 id 값을 name으로 변환 시 리스트는 가져와졌으나 id명으로 계속 확인될 때
 - 장르의 네임 작업은 1차 데이터 id  >> 2차 네임 변경 작업이므로 액션 코드 진행 시 Json Data 내 results 값의 genres 항목을 덧붙어야 필터링 진행됨 확인.
-<img src="https://file.notion.so/f/f/239050b2-b936-40ee-853c-b79f996a6356/a79c8566-a5ba-43cc-8a7e-ec1d59dacae6/Untitled.png?id=afc268e5-eef7-4cc0-a338-6890f338e4b0&table=block&spaceId=239050b2-b936-40ee-853c-b79f996a6356&expirationTimestamp=1699092000000&signature=GIvBywgQvT0_2Nz8OIxwJ-CqLyggo0I7E6xVMRxKCa0&downloadName=Untitled.png">
+
+```
+dispatch({
+    type: "GET_MOVIES_SUCCESS",
+    payload: {   //axios가 받은 데이터를 data필드에 넣어서 호출
+        popularMovies:popularMovies.data, 
+        topRatedMovies:topRatedMovies.data, 
+        upComingMovies:upComingMovies.data,
+        genreList:genreList.data.genres,
+        loading: false,
+	      },
+	  });
+	
+	    } catch (error) { // 에러 관리 구간
+	        dispatch({ type:"GET_MOVIES_FAILURE" });
+	  }       
+	};
+};
+```
 
 </br>
 
 ### 👡 4. youtube 트레일러 영상 모달창 삽입 시 undefined 발생
 - 동영상 데이터 렌더링 시 배열에 데이터 값이 없을 수 있으므로 videoId에 데이터의 결과값 O & 배열의 값 여부에 따라 조건부 렌더링 적용 시 해결됨.
-<img src="https://file.notion.so/f/f/239050b2-b936-40ee-853c-b79f996a6356/909c33b2-16e2-4d37-87ef-ac391a09f778/Untitled.png?id=9dd4accb-572f-440b-9d1b-fa3b8493b67f&table=block&spaceId=239050b2-b936-40ee-853c-b79f996a6356&expirationTimestamp=1699092000000&signature=aXUhPeT4BBvD3-GjBw9zoybLluzhJZEssLowdKyDsKY&downloadName=Untitled.png">
 
+```
+<div className="trailer" >
+    <YouTube
+        videoId={video.results && video.results.length > 0 ? video.results[0].key : null}
+        autoPlay
+        opts={{
+            width:"1800",
+            height: "800",
+            playerVars: {
+            autoplay: 1,         //자동재생 O
+            rel: 0,             //관련 동영상 표시 X
+            modestbranding: 1, // 컨트롤 바에 youtube 로고 표시 X
+            },
+        }}
+    />
+</div>
+```
 </br>
 
 ## :hammer_and_wrench: 개발 환경 및 기술 스택
